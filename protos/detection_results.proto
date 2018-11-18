@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+message Detection_Result {
+    string filename = 1;
+    repeated Detection_One_File detection_per_image = 2;
+    message Detection_One_File {
+        string label = 1;
+        float ymin = 2;
+        float xmin = 3;
+        float ymax = 4;
+        float xmax = 5;
+    }
+}
