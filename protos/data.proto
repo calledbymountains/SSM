@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+message TF_Record {
+    string pattern = 1;
+    message Options {
+        uint64 read_buffer_size = 1;
+        uint32 num_parallel_reads = 2;
+        uint32 preprocessing_num_parallel_calls = 3;
+        bool shuffle = 4;
+        uint64 shuffle_buffer_size = 5;
+        bool reshuffle_each_iteration = 6;
+        bool cache = 7;
+        string cache_dir = 8;
+        bool drop_remainder = 9;
+        uint32 prefetch_buffer_size = 10;
+    }
+}
+
+message Image_List {
+    string pattern = 1;
+    message Options {
+        uint32 num_header_lines = 1;
+        bool drop_remainder = 2;
+    }
+}
+message Data {
+    MODE name = 1;
+    oneof Input_Types {
+        TF_Record tfrecord = 2;
+        Image_List imagelist = 3;
+    }
+    enum MODE {
+        TRAINING = 0;
+        VALIDATION = 1;
+        TESTING = 2;
+    }
+    uint32 batchsize = 4;
+}

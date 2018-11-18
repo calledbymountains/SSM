@@ -1,0 +1,30 @@
+syntax = "proto3";
+message data_augmentation {
+    Random_Horizontal_Flip random_horizontal_flip = 1;
+    Random_Brightness random_brightness = 2;
+    Random_Contrast random_contrast = 3;
+    Random_Hue random_hue = 4;
+    Random_Saturation random_saturation = 5;
+
+    message Random_Horizontal_Flip {
+    }
+
+    message Random_Brightness {
+        float max_delta = 1;
+    }
+
+    message Random_Contrast {
+        float lower = 1;
+        float upper = 2;
+    }
+
+    message Random_Hue {
+        float max_delta = 1;
+
+    }
+
+    message Random_Saturation {
+        float lower = 1;
+        float upper = 2;
+    }
+}
